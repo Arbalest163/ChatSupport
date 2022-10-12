@@ -1,0 +1,11 @@
+﻿global using ChatSupport.Application;
+global using ChatSupport.Application.Common.Mappings;
+global using ChatSupport.Application.Common.Exceptions;
+global using ChatSupport.Application.Interfaces;
+global using ChatSupport.Persistence;
+global using ChatSupport.WebApi.Middleware;
+global using ChatSupport.WebApi.Models;
+global using System.Reflection;
+global using MediatR;
+global using AutoMapper;
+global using Microsoft.AspNetCore.Mvc;

@@ -1,4 +1,5 @@
 using Newtonsoft.Json.Converters;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,10 +21,16 @@ void RegisterServices(IServiceCollection services)
     services.AddApplication();
     services.AddPersistence(builder.Configuration);
 
-    services.AddControllers().AddNewtonsoftJson(o =>
-    {
-        o.SerializerSettings.Converters.Add(new IsoDateTimeConverter());
-    });
+    services.AddControllers()
+        .AddJsonOptions(opts =>
+        {
+            opts.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+        })
+        .AddNewtonsoftJson(o =>
+        {
+            o.SerializerSettings.Converters.Add(new StringEnumConverter());
+            o.SerializerSettings.Converters.Add(new IsoDateTimeConverter());
+        });
     services.AddEndpointsApiExplorer();
     services.AddSwaggerGen(c =>
     {

@@ -1,6 +1,4 @@
-﻿
-
-namespace ChatSupport.Application.Users.Queries.GetUsersList;
+﻿namespace ChatSupport.Application.Users.Queries.GetUsersList;
 public class UserDto : IMapWith<User>
 {
     public int Id { get; set; }
@@ -10,7 +8,7 @@ public class UserDto : IMapWith<User>
     [JsonConverter(typeof(DateFormatConverter), "dd-MM-yyyy")]
     public DateTime Birthday { get; set; }
     public string Nickname { get; set; }
-    public Role Role { get; set; }
+    public RoleDto Role { get; set; }
     public UserChatsDto[] Chats { get; set; } = Array.Empty<UserChatsDto>();
     public void Mapping(Profile profile)
     {

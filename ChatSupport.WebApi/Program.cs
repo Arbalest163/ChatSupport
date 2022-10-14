@@ -21,6 +21,16 @@ void RegisterServices(IServiceCollection services)
     services.AddApplication();
     services.AddPersistence(builder.Configuration);
 
+    services.AddCors(options =>
+    {
+        options.AddPolicy("AllowAll", policy =>
+        {
+            policy.AllowAnyHeader();
+            policy.AllowAnyMethod();
+            policy.AllowAnyOrigin();
+        });
+    });
+
     services.AddControllers()
         .AddJsonOptions(opts =>
         {
@@ -32,15 +42,7 @@ void RegisterServices(IServiceCollection services)
             o.SerializerSettings.Converters.Add(new IsoDateTimeConverter());
         });
 
-    services.AddCors(options =>
-    {
-        options.AddPolicy("AllowAll", policy =>
-        {
-            policy.AllowAnyHeader();
-            policy.AllowAnyMethod();
-            policy.AllowAnyOrigin();
-        });
-    });
+   
 
     services.AddEndpointsApiExplorer();
     services.AddSwaggerGen(c =>
@@ -63,9 +65,9 @@ void Configure(WebApplication app)
     }
 
     app.UseCustomExceptionHandler();
-    app.UseAddHeaderCorsMiddleware();
     app.UseHttpsRedirection();
+
     app.UseCors("AllowAll");
 
-app.MapControllers();
+    app.MapControllers();
 }

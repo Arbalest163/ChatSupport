@@ -1,5 +1,4 @@
-﻿using ChatSupport.Application.Chats.Commands.SendMessage;
-using ChatSupport.Application.Chats.Commands.SendMessageByStaff;
+﻿using ChatSupport.Application.Chats.Commands.SendMessageByStaff;
 using ChatSupport.Application.Chats.Queries.GetChats;
 
 namespace ChatSupport.WebApi.Controllers;

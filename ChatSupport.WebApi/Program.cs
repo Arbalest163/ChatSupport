@@ -31,6 +31,17 @@ void RegisterServices(IServiceCollection services)
             o.SerializerSettings.Converters.Add(new StringEnumConverter());
             o.SerializerSettings.Converters.Add(new IsoDateTimeConverter());
         });
+
+    services.AddCors(options =>
+    {
+        options.AddPolicy("AllowAll", policy =>
+        {
+            policy.AllowAnyHeader();
+            policy.AllowAnyMethod();
+            policy.AllowAnyOrigin();
+        });
+    });
+
     services.AddEndpointsApiExplorer();
     services.AddSwaggerGen(c =>
     {
@@ -52,7 +63,9 @@ void Configure(WebApplication app)
     }
 
     app.UseCustomExceptionHandler();
-    //app.UseHttpsRedirection();
+    app.UseAddHeaderCorsMiddleware();
+    app.UseHttpsRedirection();
+    app.UseCors("AllowAll");
 
-    app.MapControllers();
+app.MapControllers();
 }

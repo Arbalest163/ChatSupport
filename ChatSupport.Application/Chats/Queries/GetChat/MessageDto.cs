@@ -2,7 +2,8 @@
 public class MessageDto : IMapWith<Message>
 {
     public string Author { get; set; }
-    public DateTimeOffset DateSent { get; set; }
+    [JsonConverter(typeof(DateFormatConverter), "dd.MM.yyyy HH:mm:ss")]
+    public DateTime DateSent { get; set; }
     public string Message { get; set; }
     public void Mapping(Profile profile)
     {

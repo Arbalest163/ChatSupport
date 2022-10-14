@@ -11,7 +11,8 @@ public class GetChatQueryHandler : IRequestHandler<GetChatQuery, ChatVm>
 
     public async Task<ChatVm> Handle(GetChatQuery request, CancellationToken cancellationToken)
     {
-        var chat = await _dbContext.Chats.Include(x => x.Messages).Include(x => x.User).FirstOrDefaultAsync(x => x.Id == request.ChatId && x.User.Id == request.UserId);
+        var chat = await _dbContext.Chats.FirstOrDefaultAsync(x => x.Id == request.ChatId && x.User.Id == request.UserId);
+        await _dbContext.Messages.Include(x => x.User).Where(x => x.Chat.Id == request.ChatId).ToArrayAsync(cancellationToken);
 
         if(chat == null)
         {

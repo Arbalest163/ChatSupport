@@ -5,7 +5,7 @@ public class UserDto : IMapWith<User>
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public string MiddleName { get; set; }
-    [JsonConverter(typeof(DateFormatConverter), "dd-MM-yyyy")]
+    [JsonConverter(typeof(DateFormatConverter), "dd.MM.yyyy")]
     public DateTime Birthday { get; set; }
     public string Nickname { get; set; }
     public RoleDto Role { get; set; }

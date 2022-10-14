@@ -10,6 +10,10 @@ public class UserController : BaseController
         _mediator = mediator;
         _mapper = mapper;
     }
+    /// <summary>
+    /// Метод получения всех пользователей
+    /// </summary>
+    /// <returns></returns>
     [HttpGet]
     [Route("users")]
     public async Task<ActionResult<UsersListVm>> GetUsers()

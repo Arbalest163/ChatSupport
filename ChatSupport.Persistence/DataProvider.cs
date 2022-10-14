@@ -9,5 +9,6 @@ public class DataProvider
         yield return new User { FirstName = "Name_3", LastName = "LastName_3", MiddleName = "MiddleName_3", Nickname = "Nickname_3", Birthday = DateTime.Parse("24.07.1983"), Role = Role.User };
         yield return new User { FirstName = "Name_4", LastName = "LastName_4", MiddleName = "MiddleName_4", Nickname = "Nickname_4", Birthday = DateTime.Parse("11.01.1991"), Role = Role.User };
         yield return new User { FirstName = "Name_5", LastName = "LastName_5", MiddleName = "MiddleName_5", Nickname = "Nickname_5", Birthday = DateTime.Parse("11.06.1996"), Role = Role.User };
+        yield return new User { FirstName = "Иван", LastName = "Гилязов", MiddleName = "Владимирович", Nickname = "Сотрудник службы поддержки Иван", Birthday = DateTime.Parse("06.11.1989"), Role = Role.Support };
     }
 }
